@@ -1,33 +1,34 @@
-import DataTypes from 'sequelize';
-const sequelize = require('../config/database');
+import DataTypes, { Model } from 'sequelize';
 
-const User = sequelize.define('User', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    allowNull: false
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  secondName: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  login: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
-}, {
-  timestamps: false
-});
+class User extends Model{}
 
-module.exports = User;
+User.init({
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      secondName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      login: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
+    }, {
+        sequelize, tableName: "users"
+})
+
+export default User;
 
