@@ -8,14 +8,6 @@ const app = express()
 app.use(express.json())
 app.use('/api', router)
 
-// app.get("/api/helloworld", function (req, res) {
-//     try {
-//         res.send("Hello World")
-//     } catch (error) {
-//         res.status(500).json(error)
-//     }
-// })
-
 async function startApp() {
     try {
         app.listen(PORT, () => console.log("Server is run"))
