@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken"
+// import User from "./user.js"
 
 const secretkey = "LeamSecretWord"
 
@@ -30,14 +31,15 @@ class TOKEN {
     }
     registration(req, res){
         try {
-          const { login, password, firstName, lastName } = req.body;
+          const { login, password, firstName, lastName } = req.body
           const userForToken = {
             login,
             firstName,
             lastName,
             password
-          };
-          const token = jwt.sign(userForToken, 'your_jwt_secret');
+          }
+          User.create(userForToken)
+          const token = jwt.sign(userForToken, secretkey);
           res.status(200).send({ firstName, lastName, token });
         } catch (err) {
           res.status(500).send('Ошибка при регистрации');
