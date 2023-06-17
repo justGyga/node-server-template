@@ -28,6 +28,23 @@ class TOKEN {
             res.status(200).send({ auth: true, message: 'Token is valid.' });
         });
     }
+    registration(req, res){
+        try {
+          const { login, password, firstName, lastName } = req.body;
+          const userForToken = {
+            login,
+            firstName,
+            lastName,
+            password
+          };
+          const token = jwt.sign(userForToken, 'your_jwt_secret');
+          res.status(200).send({ firstName, lastName, token });
+        } catch (err) {
+          res.status(500).send('Ошибка при регистрации');
+        }
+    }
 }
 
 export default new TOKEN();
+
+/// ToDo - Conect registration and my DB
