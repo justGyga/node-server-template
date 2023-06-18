@@ -46,7 +46,6 @@ class TOKEN {
             res.status(200).send({ firstName, secondName, token });
         } catch (error) {
             res.status(500).json(error);
-            console.log(error.message);
         }
     }
 }

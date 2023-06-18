@@ -31,5 +31,7 @@ User.init({
     sequelize, tableName: "users"
 })
 
+sequelize.sync({ alter: true });
+
 export default User;
 
