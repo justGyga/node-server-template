@@ -1,6 +1,6 @@
 import Sequelize from "sequelize";
 
-const sequelize = new Sequelize(DB_NAME, PG_USER, PG_PASS, {
+const sequelize = new Sequelize("users", "postgres", "Santick675485", {
     dialect: "postgres",
     host: "127.0.0.1",
     port: 5432,

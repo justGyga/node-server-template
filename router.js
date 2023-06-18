@@ -13,6 +13,6 @@ router.get('/helloworld', async function (req, res) {
 
 router.get('/token/generate', TOKEN.generate)
 router.get('/token/verify', TOKEN.verify)
-router.get('/registration', TOKEN.registration)
+router.post('/registration', TOKEN.registration)
 
 export default router;
