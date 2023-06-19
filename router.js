@@ -1,11 +1,12 @@
 import Router from 'express'
-import TOKEN from './jwt.js'
+import TOKEN from './controllers/jwt.js'
+import UserActionController from './controllers/uac.js'
 
 const router = new Router()
 
 router.get('/helloworld', async function (req, res) {
     try {
-        res.send("Hello World")
+        res.status(200).send("Hello World")
     } catch (error) {
         res.status(500).json(error)
     }
@@ -13,7 +14,9 @@ router.get('/helloworld', async function (req, res) {
 
 router.get('/token/generate', TOKEN.generate)
 router.get('/token/verify', TOKEN.verify)
-router.post('/registration', TOKEN.registration)
-router.post('/addcomment', TOKEN.addcomment)
+router.post('/registration', UserActionController.registration)
+router.post('/addcomment', UserActionController.addComment)
+router.get('/comments', UserActionController.getAllComments)
+router.delete('/comments/:id', UserActionController.deleteComment)
 
 export default router;
