@@ -1,10 +1,13 @@
 import jwt from "jsonwebtoken"
-import User from "../models/user.js"
-import Comment from "../models/comments.js"
+import autoBind from "auto-bind"
 
 const secretkey = "LeamSecretWord"
 
 class TOKEN {
+    constructor(){
+        autoBind(this)
+    }
+
     // Генерирует токен
     generate(req, res) {
         const payload = {

@@ -1,14 +1,21 @@
 import jwt from "jsonwebtoken"
 import User from "../models/user.js"
 import Comment from "../models/comments.js"
+import autoBind from "auto-bind"
 
 const secretkey = "LeamSecretWord"
 
 class UserActionController{
+
+    constructor(){
+        autoBind(this)
+    }
+
     // Реши эту проблему
     tokenVerify(token) {
         jwt.verify(token, secretkey, (err, decoded) => {
             if (err) {
+                console.log(err)
                 return 500
                 // return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
             }
@@ -37,6 +44,8 @@ class UserActionController{
     async addComment(req, res) {
         try {
             const { text, userId } = req.body
+            const user = await User.findByPk(userId)
+            if (user === null) { return res.status(500).send({ userId: id, message: "Пользователя с таким id не существует" })}
             const { authorization } = req.headers
             const token = authorization.split(" ")[1]
             jwt.verify(token, secretkey, (err, decoded) => {
@@ -57,18 +66,20 @@ class UserActionController{
         try {
             const { authorization } = req.headers
             const token = authorization.split(" ")[1]
-            jwt.verify(token, secretkey, (err, decoded) => {
-                if (err) {
-                    return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
-                }
-            })
-            // const result = this.tokenVerify(token)
-            // if (result === 500){
-            //     return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' })
-            // }
+            // jwt.verify(token, secretkey, (err, decoded) => {
+            //     if (err) {
+            //         return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+            //     }
+            // })
+            const result = this.tokenVerify(token)
+            if (result === 500){
+                return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' })
+            }
             const allComments = await Comment.findAll()
             res.status(200).json(allComments);
-        } catch (error) { res.status(500).json(error) }
+        } catch (error) {
+            console.log(error) 
+            res.status(500).json(error) }
     }
 
     async deleteComment(req, res) {
