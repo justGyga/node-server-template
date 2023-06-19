@@ -1,7 +1,8 @@
-import {DataTypes, Model} from 'sequelize';
-import sequelize from './config/database.js';
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '../config/database.js';
+import Comment from "./models/comments.js"
 
-class User extends Model{}
+class User extends Model { }
 
 User.init({
     id: {
@@ -30,6 +31,8 @@ User.init({
 }, {
     sequelize, tableName: "users"
 })
+
+User.hasMany(Comment, {foreignKey: "userId", onDelete: "CASCADE"})
 
 sequelize.sync({ alter: true });
 

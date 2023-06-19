@@ -1,10 +1,11 @@
 import jwt from "jsonwebtoken"
-import User from "./user.js"
+import User from "./models/user.js"
+import Comment from "./models/comments.js"
 
 const secretkey = "LeamSecretWord"
 
 class TOKEN {
-    // Генерируй через Body
+    // Генерируй
     generate(req, res) {
         const payload = {
             username: 'user',
@@ -14,9 +15,9 @@ class TOKEN {
         res.send(token);
     }
 
-    // Верифицируй через headers
+    // Верифицируй
     verify(req, res) {
-        const token = req.headers['authorization'];
+        const {token} = req.body;
 
         if (!token) {
             return res.status(403).send({ auth: false, message: 'No token provided.' });
@@ -31,7 +32,7 @@ class TOKEN {
     }
 
     // Регистраия
-    // TODO - перенеси регистрауцию в другой файл, соедени ее с бд
+    // TODO - перенеси регистрауцию в другой файл
     async registration(req, res) {
         try {
             const { login, password, firstName, secondName } = req.body
@@ -47,6 +48,23 @@ class TOKEN {
         } catch (error) {
             res.status(500).json(error);
         }
+    }
+
+    async addcomment(req, res){
+        try{
+            const {text, userId, token} = req.body
+            jwt.verify(token, secretkey, (err, decoded) => {
+                if (err) {
+                    return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+                }
+            })
+            const commentForToken = {
+                text, 
+                userId
+            }
+            await Comment.create(commentForToken)
+            res.status(200).send({ text, userId});
+        } catch (error){res.status(500).json(error)}
     }
 }
 

@@ -14,5 +14,6 @@ router.get('/helloworld', async function (req, res) {
 router.get('/token/generate', TOKEN.generate)
 router.get('/token/verify', TOKEN.verify)
 router.post('/registration', TOKEN.registration)
+router.post('/addcomment', TOKEN.addcomment)
 
 export default router;
