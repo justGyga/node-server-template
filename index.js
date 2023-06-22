@@ -14,8 +14,8 @@ app.use('/api', router)
 
 async function startApp() {
     try {
-        User.hasMany(Comment, {foreignKey: "userId", onDelete: "CASCADE"})
-        Comment.belongsTo(User, { foreignKey: "userId", onDelete: "CASCADE" })
+
+        
         sequelize.sync({ alter: true })
         app.listen(PORT, () => console.log("Server is run"))
     } catch (error) {
