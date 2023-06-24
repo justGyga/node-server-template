@@ -25,8 +25,7 @@ class UserActionController {
                 return res.status(400).send({ message: `Пользователь с логином ${userForToken.login} уже существует` })
             }
             await User.create(userForToken)
-            const token = jwt.sign(userForToken, secretkey);
-            res.status(200).send({ firstName, secondName, token });
+            res.status(200).send({ firstName, secondName});
         } catch (error) {
             res.status(500).json(error);
         }
