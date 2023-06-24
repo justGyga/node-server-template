@@ -5,9 +5,9 @@ import autoBind from "auto-bind"
 
 const secretkey = "LeamSecretWord"
 
-class UserActionController{
+class UserActionController {
 
-    constructor(){
+    constructor() {
         autoBind(this)
     }
 
@@ -20,6 +20,9 @@ class UserActionController{
                 secondName: secondName,
                 login: login,
                 password: password
+            }
+            if (await User.findOne({ where: { login: userForToken.login }, raw: true })){
+                return res.status(400).send({ message: `Пользователь с логином ${userForToken.login} уже существует` })
             }
             await User.create(userForToken)
             const token = jwt.sign(userForToken, secretkey);

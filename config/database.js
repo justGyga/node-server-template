@@ -1,6 +1,6 @@
 import Sequelize from "sequelize";
 
-const createConection = (dbname, user, pass) => {
+const createConnection = (dbname, user, pass) => {
     return new Sequelize(dbname, user, pass, {
         dialect: "postgres",
         host: "127.0.0.1",
@@ -10,4 +10,4 @@ const createConection = (dbname, user, pass) => {
     })
 }
 
-export default { createConection }
+export default createConnection

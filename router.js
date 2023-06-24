@@ -16,7 +16,7 @@ router.get('/helloworld', async function (req, res) {
 router.get('/token/generate', TOKEN.generate)
 router.get('/token/verify', TOKEN.verify)
 router.post('/registration', UserActionController.registration)
-router.post('/addcomment', CommentActionController.addComment)
+router.post('/comments', CommentActionController.addComment)
 router.get('/comments', CommentActionController.getAllComments)
 router.delete('/comments/:id', CommentActionController.deleteComment)
 
