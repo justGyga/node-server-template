@@ -5,7 +5,7 @@ import router from './router.js'
 // import sequelize from './config/database.js';
 import createConnection from './config/database.js';
 import {userInitter, commentInitter} from './models/_idex.js'
-import {DB_NAME, USER, PASSWORD, PORT} from './config/constants.js'
+import ServerConsts from './config/constants.js'
 
 const app = express()
 
@@ -23,9 +23,9 @@ const modelsInit = async (sequelize) =>{
 async function startApp() {
     try {
         const conection = createConnection;
-        modelsInit(conection(DB_NAME, USER, PASSWORD))
+        modelsInit(conection(ServerConsts.DB_NAME, ServerConsts.USER, ServerConsts.PASSWORD))
         sequelize.sync({ alter: true })
-        app.listen(PORT, () => console.log("Server is run"))
+        app.listen(ServerConsts.PORT, () => console.log("Server is run"))
     } catch (error) {
         console.log(error)
     }

@@ -1,10 +1,11 @@
-// DB constants
-const DB_NAME = "LeamHomeWorks"
-const USER = "postgres"
-const PASSWORD = "Santick675485"
+class ServerConsts {
+    // DB constants
+    DB_NAME = "LeamHomeWorks"
+    USER = "postgres"
+    PASSWORD = "Santick675485"
 
-//Server constants
-const PORT = 3000
+    //Server constants
+    PORT = 3000
+}
 
-
-export default {DB_NAME, USER, PASSWORD, PORT}
+export default new ServerConsts()
