@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import ServerConsts from './config/constants.js';
+import ServerConsts from '../config/constants.js';
 
 export class TokenGuard {
     static verify = (req, res, funcs = {}) =>
