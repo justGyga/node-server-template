@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import Comment from './comments.js';
+import Comment from '../comment/comments.js';
 
 export default class User extends Model { }
 

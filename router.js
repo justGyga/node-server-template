@@ -1,6 +1,6 @@
 import Router from 'express'
-import UserActionController from './controllers/uac.js'
-import CommentActionController from './controllers/cac.js'
+import UserActionController from './modules/user/userController.js'
+import CommentActionController from './modules/comment/commentController.js'
 import { TokenGuard } from './middleware/token-guard.js'
 
 const router = new Router()

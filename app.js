@@ -1,7 +1,7 @@
 import express from 'express';
 import router from './router.js';
 import createConnection from './config/database.js';
-import modelList from './models/_index.js';
+import modelList from './modules/_index.js';
 import ServerConsts from './config/constants.js';
 
 const app = express()
