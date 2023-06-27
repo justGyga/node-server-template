@@ -1,4 +1,5 @@
-import User from "./user.js"
+import User from "../models/user.js"
+import _ from 'lodash'
 
 import autoBind from "auto-bind"
 
@@ -12,19 +13,14 @@ class UserActionController {
 
     // Регистраия
     async registration(req, res) {
+        console.log(req.body)
         try {
-            const { login, password, firstName, secondName } = req.body
-            const userForToken = {
-                name: firstName,
-                secondName: secondName,
-                login: login,
-                password: password
+            const doc = req.body
+            if (await User.findOne({ where: { login: { [Op.iLike]: doc.login } }, raw: true })) {
+                return res.status(400).send({ message: `Пользователь с логином ${doc.login} уже существует` })
             }
-            if (await User.findOne({ where: { login: userForToken.login }, raw: true })){
-                return res.status(400).send({ message: `Пользователь с логином ${userForToken.login} уже существует` })
-            }
-            await User.create(userForToken)
-            res.status(200).send({ firstName, secondName});
+            await User.create(doc)
+            res.status(200).json(_.pick(doc, "name", "secondName"));
         } catch (error) {
             res.status(500).json(error);
         }

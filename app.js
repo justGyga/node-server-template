@@ -1,7 +1,7 @@
 import express from 'express';
 import router from './router.js';
 import createConnection from './config/database.js';
-import modelList from './modules/_index.js';
+import modelList from './modules/models/_index.js';
 import ServerConsts from './config/constants.js';
 
 const app = express()
@@ -20,7 +20,7 @@ const modelsInit = async (sequelize) => {
 async function startApp() {
     try {
         // const conection = createConnection;
-        modelsInit(createConnection(ServerConsts.DB_NAME, ServerConsts.USER, ServerConsts.PASSWORD))
+        await modelsInit(createConnection(ServerConsts.DB_NAME, ServerConsts.USER, ServerConsts.PASSWORD))
         app.listen(ServerConsts.PORT, () => console.log("Server is run"))
     } catch (error) {
         console.log(error)

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken"
-import User from "../user/user.js"
-import Comment from "./comments.js"
+import User from "../models/user.js"
+import Comment from "../models/comments.js"
 import autoBind from "auto-bind"
 
 const secretkey = "LeamSecretWord"

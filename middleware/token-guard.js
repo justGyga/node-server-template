@@ -2,35 +2,22 @@ import jwt from "jsonwebtoken"
 import ServerConsts from '../config/constants.js';
 
 export class TokenGuard {
-    static verify = (req, res, funcs = {}) =>
-        async (req, res, next) => {
-            try {
-                const { authorization } = req.headers
-                const token = authorization.split(" ")[1]
-                if (!token) {
-                    return res.status(403).send({ auth: false, message: 'Токен не предоставлен' });
-                }
-                jwt.verify(token, ServerConsts.secretkey, (err, decoded) => {
-                    if (err) {
-                        return res.status(401).send({ auth: false, message: 'Токен невалиден' });
-                    }
-                });
-                next();
-            } catch (error) { res.status(401).json({ message: error.message }) }
-        }
+    static verify = async (req, res, next) => {
+        try {
+            const { authorization } = req.headers
+            const token = authorization.split(" ")[1]
+            if (!token) {
+                throw new Error();
+            }
+            jwt.verify(token, ServerConsts.secretkey);
+            next();
+        } catch (error) { res.status(401).json({ message: 'Токен не действителен' }) }
+    }
 
-    static generate = (req, res, funcs = {}) =>
-        async (req, res, next) => {
+    static generate = (payload) => {
             try {
-                const { login, password, firstName, secondName } = req.body
-                const userForToken = {
-                    name: firstName,
-                    secondName: secondName,
-                    login: login,
-                    password: password
-                }
-                const token = jwt.sign(userForToken, ServerConsts.secretkey);
-                next();
+                const expiresIn = process.env.TOKEN_EXPIRE || '7d';
+                return jwt.sign(payload, ServerConsts.secretkey, {expiresIn});
             } catch (error) { res.status(401).json({ message: error.message }) }
         }
 }
