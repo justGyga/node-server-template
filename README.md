@@ -2,7 +2,7 @@
 Use ```npm i``` to install all packages
 
 # TODO
-[X] loginDto
-- commentDto
-- loginController and Token
-- YUP and LODASH
+- [x] loginDto
+- [ ] commentDto
+- [ ] loginController and Token
+- [x] YUP and LODASH
