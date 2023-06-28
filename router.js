@@ -4,6 +4,7 @@ import CommentActionController from './modules/comment/commentController.js'
 import { TokenGuard } from './middleware/token-guard.js'
 import { validate } from './middleware/validator.js'
 import { registerDto } from './modules/user/dto/registration-dto.js'
+import { loginDto } from './modules/user/dto/login-dto.js'
 
 const router = new Router()
 
@@ -16,8 +17,7 @@ router.get('/helloworld', async function (req, res) {
 })
 
 router.post('/registration', validate(registerDto), UserActionController.registration)
-// TODO LOGIN
-// router.post('/login', UserActionController.login)
+router.get('/login', validate(loginDto), UserActionController.login)
 router.post('/comments', TokenGuard.verify, CommentActionController.addComment)
 router.get('/comments', TokenGuard.verify, CommentActionController.getAllComments)
 router.delete('/comments/:id', CommentActionController.deleteComment)
