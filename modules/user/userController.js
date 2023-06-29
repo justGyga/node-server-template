@@ -10,10 +10,9 @@ class UserActionController {
         autoBind(this)
     }
 
-    // Регистраия
     async registration(req, res) {
+        const doc = req.body
         try {
-            const doc = req.body
             if (await User.findOne({ where: { login: { [Op.iLike]: doc.login } }, raw: true })) {
                 return res.status(400).json({ message: `Пользователь с логином ${doc.login} уже существует` })
             }
@@ -25,9 +24,12 @@ class UserActionController {
     }
 
     async login(req, res) {
+        const doc = req.body
         try {
-            const doc = req.body
-            const signedUser = await User.findOne({ where: { login: { [Op.iLike]: doc.login }, password: { [Op.iLike]: doc.password } }, raw: true })
+            const signedUser = await User.findOne({ where: { 
+                login: { [Op.iLike]: doc.login }, 
+                password: { [Op.iLike]: doc.password } 
+            }, raw: true })
             if (!signedUser) {
                 return res.status(400).json({ message: "Login or password isn't correct" })
             }

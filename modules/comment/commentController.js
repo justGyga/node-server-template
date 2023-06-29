@@ -1,42 +1,43 @@
 import User from "../models/user.js";
 import Comment from "../models/comments.js";
 import autoBind from "auto-bind";
+import _ from 'lodash';
 
 class CommentActionController {
     constructor() {
         autoBind(this)
     }
 
-    // Добавление комментария
     async addComment(req, res) {
+        const doc = req.body
         try {
-            const doc = req.body
             const user = await User.findByPk(doc.userId)
             if (!user) { return res.status(400).json({ message: `Пользователя с id ${doc.userId} не существует` }) }
             await Comment.create(doc)
-            res.status(200).json({ text: doc.text, userLogin: user.login });
-        } catch (error) { res.status(500).json(error.message) }
-    }
-
-    // Вывести все комментарии
-    async getAllComments(req, res) {
-        try {
-            const allComments = await Comment.findAll()
-            res.status(200).json(allComments);
+            res.status(200).json(_.pick(doc, 'text', 'userId'));
         } catch (error) {
-            res.status(500).json(error)
+            res.status(500).json({ message: error.message })
         }
     }
 
-    // Удаление комментария
-    async deleteComment(req, res) {
+    async getAllComments(req, res) {
         try {
-            const doc = req.params
+            res.status(200).json(await Comment.findAll());
+        } catch (error) {
+            res.status(500).json({ message: error.message })
+        }
+    }
+
+    async deleteComment(req, res) {
+        const doc = req.params
+        try {
             if (!doc.id) { return res.status(400).json({ message: "id не указан" }) }
             const comment = await Comment.findByPk(doc.id)
             comment.destroy()
-            res.status(200).json(doc.id);
-        } catch (error) { res.status(500).json({ message: `Комментария с id ${doc.id} не существует` }) }
+            res.status(200).json({ message: `Комментария с id ${doc.id} был удален` });
+        } catch (error) {
+            res.status(400).json({ message: `Комментария с id ${doc.id} не существует` })
+        }
     }
 }
 

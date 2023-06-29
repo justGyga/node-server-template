@@ -26,8 +26,8 @@ export const validate =
                 }
                 req[payloadKey] = _.pick(data, fieldKeys);
                 next();
-            } catch (ex) {
-                const errors = errorParser(ex);
+            } catch (error) {
+                const errors = errorParser(error);
                 return res.status(422).json({ errors });
             }
         };
