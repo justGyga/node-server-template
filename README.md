@@ -3,6 +3,6 @@ Use ```npm i``` to install all packages
 
 # TODO
 - [x] loginDto
-- [ ] commentDto
-- [ ] loginController and Token
+- [x] commentDto
+- [x] loginController and Token
 - [x] YUP and LODASH

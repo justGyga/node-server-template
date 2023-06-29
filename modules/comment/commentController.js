@@ -1,38 +1,21 @@
-import jwt from "jsonwebtoken"
-import User from "../models/user.js"
-import Comment from "../models/comments.js"
-import autoBind from "auto-bind"
-
-const secretkey = "LeamSecretWord"
+import User from "../models/user.js";
+import Comment from "../models/comments.js";
+import autoBind from "auto-bind";
 
 class CommentActionController {
     constructor() {
         autoBind(this)
     }
 
-    // Верификация токена
-    verify(token) {
-        jwt.verify(token, secretkey, (err, decoded) => {
-            if (err) {
-                return 401
-            }
-            return 200
-        })
-    }
-
     // Добавление комментария
     async addComment(req, res) {
         try {
-            const { text, userId } = req.body
-            const user = await User.findByPk(userId)
-            if (user === null) { return res.status(500).send({ userId: id, message: "Пользователя с таким id не существует" }) }
-            const commentForToken = {
-                text,
-                userId
-            }
-            await Comment.create(commentForToken)
-            res.status(200).send({ text, userId });
-        } catch (error) { res.status(500).json(error) }
+            const doc = req.body
+            const user = await User.findByPk(doc.userId)
+            if (!user) { return res.status(400).json({ message: `Пользователя с id ${doc.userId} не существует` }) }
+            await Comment.create(doc)
+            res.status(200).json({ text: doc.text, userLogin: user.login });
+        } catch (error) { res.status(500).json(error.message) }
     }
 
     // Вывести все комментарии
@@ -48,13 +31,12 @@ class CommentActionController {
     // Удаление комментария
     async deleteComment(req, res) {
         try {
-            const { id } = req.params
-            if (!id) { return res.status(400).send({ message: "id не указан" }) }
-            const comment = await Comment.findByPk(id)
-            if (comment === null) { return res.status(400).send({ comment: id, message: "Комментария с таким id не существует" }) }
-            Comment.destroy({ where: { id: id } })
-            res.status(200).json(comment);
-        } catch (error) { res.status(500).json(error) }
+            const doc = req.params
+            if (!doc.id) { return res.status(400).json({ message: "id не указан" }) }
+            const comment = await Comment.findByPk(doc.id)
+            comment.destroy()
+            res.status(200).json(doc.id);
+        } catch (error) { res.status(500).json({ message: `Комментария с id ${doc.id} не существует` }) }
     }
 }
 

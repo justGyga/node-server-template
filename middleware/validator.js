@@ -1,5 +1,4 @@
 import _ from "lodash";
-import Yup from "yup";
 
 const errorParser = (errors) =>
     errors.inner.map((e) => ({

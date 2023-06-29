@@ -14,10 +14,10 @@ export class TokenGuard {
         } catch (error) { res.status(401).json({ message: 'Токен не действителен' }) }
     }
 
-    static generate = (payload) => {
-            try {
-                const expiresIn = process.env.TOKEN_EXPIRE || '7d';
-                return jwt.sign(payload, ServerConsts.secretkey, {expiresIn});
-            } catch (error) { res.status(401).json({ message: error.message }) }
-        }
+    static generate = async (payload) => {
+        try {
+            const expiresIn = process.env.TOKEN_EXPIRE || '7d';
+            return jwt.sign({ data: payload }, ServerConsts.secretkey, { expiresIn });
+        } catch (error) { res.status(401).json({ message: error.message }) }
+    }
 }
