@@ -1,5 +1,6 @@
 ﻿# It's my pet project
 I create and develop this Pet-project under the guidance Leam.
+This project should show my knowledge in project structuring.
 
 # Libraries
 - express
