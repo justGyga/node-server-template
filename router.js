@@ -5,7 +5,6 @@ import { TokenGuard } from './middleware/token-guard.js'
 import { validate, CONTEXT } from './middleware/validator.js'
 import { registerDto } from './modules/user/dto/registration-dto.js'
 import { loginDto } from './modules/user/dto/login-dto.js'
-// import { viewDto } from './modules/comment/dto/view-dto.js'
 import { deleteDto } from './modules/comment/dto/delete-dto.js'
 import { addDto } from './modules/comment/dto/add-dto.js'
 
@@ -20,7 +19,7 @@ router.get('/helloworld', async function (req, res) {
 })
 
 router.post('/registration', validate(registerDto), UserActionController.registration)
-router.get('/login', validate(loginDto), UserActionController.login)
+router.post('/login', validate(loginDto), UserActionController.login)
 router.post('/comments', TokenGuard.verify, validate(addDto), CommentActionController.addComment)
 router.get('/comments', TokenGuard.verify, CommentActionController.getAllComments)
 router.delete('/comments/:id', validate(deleteDto, CONTEXT.PATH), CommentActionController.deleteComment)

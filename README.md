@@ -12,13 +12,8 @@ This project should show my knowledge in project structuring.
 - auto-bind
 
 # TODO
-- [x] Refactor project
-- [x] login
-    - [x] login-dto
-    - [x] login route
-    - [x] login controll
-- [x] comment-dto
-- [x] YUP and LODASH
+- [x] Add req.user in token-guard
+- [x] rewrite http codes
 
 # Checked tasks
 ## task 1
@@ -39,7 +34,7 @@ This project should show my knowledge in project structuring.
 - [x] Separate User and Comment controllers
 - [x] Moddify token-guard, create middleware
 
-## task 3 (current)
+## task 3
 - [x] Refactor project
 - [x] login
     - [x] login-dto
@@ -47,6 +42,15 @@ This project should show my knowledge in project structuring.
     - [x] login controll
 - [x] comment-dto
 - [x] YUP and LODASH
+
+## task 4 (current)
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
 
 ### Download dependences
 Use ```npm i``` to install all packages

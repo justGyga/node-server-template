@@ -19,7 +19,6 @@ const modelsInit = async (sequelize) => {
 
 async function startApp() {
     try {
-        // const conection = createConnection;
         await modelsInit(createConnection(ServerConsts.DB_NAME, ServerConsts.USER, ServerConsts.PASSWORD))
         app.listen(ServerConsts.PORT, () => console.log("Server is run"))
     } catch (error) {
