@@ -14,10 +14,10 @@ class UserActionController {
         const doc = req.body
         try {
             if (await User.findOne({ where: { login: { [Op.iLike]: doc.login } }, raw: true })) {
-                return res.status(400).json({ message: `Пользователь с логином ${doc.login} уже существует` })
+                return res.status(409).json({ message: `Пользователь с логином ${doc.login} уже существует` })
             }
             await User.create(doc)
-            res.status(200).json(_.pick(doc, "name", "secondName"));
+            res.status(201).json(_.pick(doc, "name", "secondName"));
         } catch (error) {
             res.status(500).json(error.message);
         }
@@ -26,14 +26,16 @@ class UserActionController {
     async login(req, res) {
         const doc = req.body
         try {
-            const signedUser = await User.findOne({ where: { 
-                login: { [Op.iLike]: doc.login }, 
-                password: { [Op.iLike]: doc.password } 
-            }, raw: true })
+            const signedUser = await User.findOne({
+                where: {
+                    login: { [Op.iLike]: doc.login },
+                    password: doc.password
+                }, raw: true
+            })
             if (!signedUser) {
-                return res.status(400).json({ message: "Login or password isn't correct" })
+                return res.status(404).json({ message: "Login or password isn't correct" })
             }
-            res.status(200).json({ message: "All is correct", token: await TokenGuard.generate(signedUser.id) })
+            res.status(200).json({ message: "All is correct", token: await TokenGuard.generate({id: signedUser.id}) })
         } catch (error) { res.status(500).json(error.message) }
 
     }
