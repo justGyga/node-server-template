@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { Op } from 'sequelize';
 import autoBind from "auto-bind";
 import { TokenGuard } from "../../middleware/token-guard.js";
+import * as argon2 from "argon2";
 
 class UserActionController {
 
@@ -16,6 +17,7 @@ class UserActionController {
             if (await User.findOne({ where: { login: { [Op.iLike]: doc.login } }, raw: true })) {
                 return res.status(409).json({ message: `Пользователь с логином ${doc.login} уже существует` })
             }
+            doc.password = await argon2.hash(doc.password);
             await User.create(doc)
             res.status(201).json(_.pick(doc, "name", "secondName"));
         } catch (error) {
@@ -25,6 +27,7 @@ class UserActionController {
 
     async login(req, res) {
         const doc = req.body
+        doc.password = await argon2.hash(doc.password);
         try {
             const signedUser = await User.findOne({
                 where: {

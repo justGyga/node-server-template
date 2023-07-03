@@ -44,7 +44,7 @@ This project should show my knowledge in project structuring.
 - [x] YUP and LODASH
 
 ## task 4 (current)
-- [ ]
+- [x] Hash password
 - [ ]
 - [ ]
 - [ ]
