@@ -17,7 +17,7 @@ export class TokenGuard {
     static generate = async (payload) => {
         try {
             const expiresIn = process.env.TOKEN_EXPIRE || '7d';
-            return jwt.sign({ data: payload }, ServerConsts.secretkey, { expiresIn });
-        } catch (error) { res.status(500).json({ message: error.message }) }
+            return jwt.sign(payload, ServerConsts.secretkey, { expiresIn });
+        } catch (error) { throw new Error(error.message) }
     }
 }
