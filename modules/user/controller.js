@@ -1,4 +1,3 @@
-// import _ from 'lodash';
 import autoBind from 'auto-bind';
 import UserService from './service.js'
 

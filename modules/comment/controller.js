@@ -2,32 +2,36 @@ import User from "../models/user.js";
 import Comment from "../models/comments.js";
 import autoBind from "auto-bind";
 import _ from 'lodash';
+import CommentService from "./service.js";
 
 class CommentController {
+    #commentService
+
     constructor() {
-        autoBind(this)
+        autoBind(this);
+        this.#commentService = new CommentService();
     }
 
     async addComment(req, res) {
         try {
-            if (!await User.findByPk(req.user.id)) { 
+            const result = await this.#commentService.postComment({ text: req.body.text, id: req.user.id })
+            if (!result) {
                 return res.status(404).json({ message: `Пользователя с id ${req.user.id} не существует` })
             }
-            await Comment.create({text: req.body.text, userId: req.user.id})
-            res.status(201).json(_.pick(req.body, 'text'));
+            res.status(201).json(result);
         } catch (error) {
-            res.status(500).json({ message: error.message })
+            console.log(error.message)
+            res.status(500).json({ message: "Something went wrong" })
         }
     }
 
     async getAllComments(req, res) {
-        res.status(200).json(await Comment.findAll());
+        res.status(200).json(await this.#commentService.getAllCommennts());
     }
 
     async deleteComment(req, res) {
-        const doc = req.params
-        Comment.destroy({ where: { id: doc.id } })
-        res.status(204);
+        await this.#commentService.destroyComment(req.params.id)
+        res.status(204).json({})
     }
 }
 
