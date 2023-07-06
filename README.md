@@ -12,8 +12,7 @@ This project should show my knowledge in project structuring.
 - auto-bind
 
 # TODO
-- [x] Add req.user in token-guard
-- [x] rewrite http codes
+- [ ] Separate Controllers and Services
 
 # Checked tasks
 ## task 1
@@ -43,14 +42,13 @@ This project should show my knowledge in project structuring.
 - [x] comment-dto
 - [x] YUP and LODASH
 
-## task 4 (current)
+## task 4 
 - [x] Hash password
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
+- [x] Add req.user in token-guard
+- [x] rewrite http codes
+
+## task 5 (current)
+- [ ] Separate Controllers and Services
 
 ### Download dependences
 Use ```npm i``` to install all packages
