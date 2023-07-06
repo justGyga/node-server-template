@@ -9,12 +9,12 @@ class CommentActionController {
     }
 
     async addComment(req, res) {
-        const doc = req.body
         try {
-            const user = await User.findByPk(doc.userId)
-            if (!user) { return res.status(404).json({ message: `Пользователя с id ${doc.userId} не существует` }) }
-            await Comment.create(doc)
-            res.status(201).json(_.pick(doc, 'text', 'userId'));
+            if (!await User.findByPk(req.user.id)) { 
+                return res.status(404).json({ message: `Пользователя с id ${req.user.id} не существует` })
+            }
+            await Comment.create({text: req.body.text, userId: req.user.id})
+            res.status(201).json(_.pick(req.body, 'text'));
         } catch (error) {
             res.status(500).json({ message: error.message })
         }
