@@ -3,7 +3,7 @@ import Comment from "../models/comments.js";
 import autoBind from "auto-bind";
 import _ from 'lodash';
 
-class CommentActionController {
+class CommentController {
     constructor() {
         autoBind(this)
     }
@@ -31,4 +31,4 @@ class CommentActionController {
     }
 }
 
-export default new CommentActionController();
+export default new CommentController();

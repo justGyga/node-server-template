@@ -1,0 +1,5 @@
+class CommentService{
+    async postComment(){
+        
+    }
+}
