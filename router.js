@@ -13,7 +13,8 @@ import { loginDto } from './modules/user/dto/login-dto.js'
 import { deleteDto } from './modules/comment/dto/delete-dto.js'
 import { addDto } from './modules/comment/dto/add-dto.js'
 // Mark DTO
-import { putMarkDto } from './modules/mark/dto/add-dto.js'
+import { putMarkDto } from './modules/mark/dto/put-dto.js'
+import { idMarkDto } from './modules/mark/dto/id-dto.js'
 
 const router = new Router()
 
@@ -35,6 +36,7 @@ router.get('/comments', TokenGuard.verify, CommentController.getAllComments)
 router.delete('/comments/:id', validate(deleteDto, CONTEXT.PATH), CommentController.deleteComment)
 
 // Marks
-router.put('/comments/:commentId', TokenGuard.verify, validate(putMarkDto, CONTEXT.PATH), MarkController.postMark)
+router.put('/comments/:commentId', TokenGuard.verify, validate(idMarkDto, CONTEXT.PATH), validate(putMarkDto), MarkController.postMark)
+router.get('/comments/:commentId', validate(idMarkDto, CONTEXT.PATH), MarkController.gelAllMarks)
 
 export default router;

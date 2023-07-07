@@ -13,19 +13,20 @@ class MarkController {
 
     async postMark(req, res) {
         try {
-            const doc = {
+            const result = await this.#markService.putMark({
                 userId: req.user.id,
-                like: true, // req.body.like,
+                like: req.body.like,
                 commentId: req.params.commentId
-            }
-            const result = await this.#markService.putMark(doc)
-            if (!result) res.status(404).json({message: `Комментария с id ${req.params.commentId} не существует`})
+            })
+            if (!result) res.status(404).json({ message: `Комментария с id ${req.params.commentId} не существует` })
             res.status(201).json(_.pick(result, "like", "commentId"))
         } catch (error) {
             console.log(error.message)
             res.status(500).json({ message: "Something went wrong" })
         }
     }
+
+    async gelAllMarks(req,res){}
 }
 
 export default new MarkController();

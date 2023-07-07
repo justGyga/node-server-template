@@ -56,10 +56,11 @@ This project should show my knowledge in project structuring.
 - [x] Separate commentController and commentService from commentController
 
 ## task 6 (current)
-- [ ] Create new entity Mark
-- [ ] Router for Mark (put request) - create
+- [x] Create new entity Mark
+- [x] Create Mark add DTO
+- [x] Router for Mark (put request) - create
 - [ ] Router for Mark (get request) - list of likers
-- [x] Create .env (dotenv)
+- [x] Create .env
 
 ### Download dependencies
 Use ```npm i``` to install all packages
