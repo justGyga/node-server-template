@@ -12,7 +12,8 @@ This project should show my knowledge in project structuring.
 - auto-bind
 
 # TODO
-- [ ] Separate Controllers and Services
+- [x] Separate userController and userService from userController
+- [x] Separate commentController and commentService from commentController
 
 # Checked tasks
 ## task 1
@@ -48,7 +49,8 @@ This project should show my knowledge in project structuring.
 - [x] rewrite http codes
 
 ## task 5 (current)
-- [ ] Separate Controllers and Services
+- [x] Separate userController and userService from userController
+- [x] Separate commentController and commentService from commentController
 
 ### Download dependences
 Use ```npm i``` to install all packages
