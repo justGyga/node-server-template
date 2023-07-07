@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import Comment from './comments.js';
+import Mark from './mark.js';
 
 export default class User extends Model { }
 
@@ -28,9 +29,10 @@ export const userInitter = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         }
-    }, {
-        sequelize, tableName: "users"
-    })
+    }, { sequelize, tableName: "users" })
 
-    return () => { User.hasMany(Comment, { foreignKey: "userId", onDelete: "CASCADE" }) }
+    return () => {
+        User.hasMany(Comment, { foreignKey: "userId", onDelete: "CASCADE" })
+        User.hasMany(Mark, { foreignKey: "userId", onDelete: "CASCADE" })
+    }
 }

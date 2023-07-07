@@ -12,7 +12,8 @@ This project should show my knowledge in project structuring.
 - auto-bind
 
 # TODO
-- [ ] Create new entity Mark
+- [x] Create new entity Mark
+- [x] Create Mark add DTO
 - [ ] Router for Mark (put request) - create
 - [ ] Router for Mark (get request) - list of likers
 - [x] Create .env
@@ -58,7 +59,7 @@ This project should show my knowledge in project structuring.
 - [ ] Create new entity Mark
 - [ ] Router for Mark (put request) - create
 - [ ] Router for Mark (get request) - list of likers
-- [ ] Create .env (dotenv)
+- [x] Create .env (dotenv)
 
 ### Download dependencies
 Use ```npm i``` to install all packages
