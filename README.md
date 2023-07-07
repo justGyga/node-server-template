@@ -4,7 +4,7 @@ This project should show my knowledge in project structuring.
 
 # Libraries
 - express
-- sequalize
+- sequelize
 - lodash
 - yup
 - jsonwebtoken
@@ -12,12 +12,14 @@ This project should show my knowledge in project structuring.
 - auto-bind
 
 # TODO
-- [x] Separate userController and userService from userController
-- [x] Separate commentController and commentService from commentController
+- [x] Create new entity Mark
+- [ ] Router for Mark (put request) - create
+- [ ] Router for Mark (get request) - list of likers
+- [ ] Create .env (dotenv)
 
 # Checked tasks
 ## task 1
-- [x] EndPoits
+- [x] EndPoints
     - [x] Registration
     - [x] View all comments
     - [x] Add comment
@@ -32,14 +34,14 @@ This project should show my knowledge in project structuring.
 - [x] Create wrappers
 - [x] Create _index.js for models
 - [x] Separate User and Comment controllers
-- [x] Moddify token-guard, create middleware
+- [x] Modify token-guard, create middleware
 
 ## task 3
 - [x] Refactor project
 - [x] login
     - [x] login-dto
     - [x] login route
-    - [x] login controll
+    - [x] login controller
 - [x] comment-dto
 - [x] YUP and LODASH
 
@@ -48,9 +50,15 @@ This project should show my knowledge in project structuring.
 - [x] Add req.user in token-guard
 - [x] rewrite http codes
 
-## task 5 (current)
+## task 5 
 - [x] Separate userController and userService from userController
 - [x] Separate commentController and commentService from commentController
 
-### Download dependences
+## task 6 (current)
+- [ ] Create new entity Mark
+- [ ] Router for Mark (put request) - create
+- [ ] Router for Mark (get request) - list of likers
+- [ ] Create .env (dotenv)
+
+### Download dependencies
 Use ```npm i``` to install all packages

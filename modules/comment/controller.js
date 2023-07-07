@@ -18,7 +18,7 @@ class CommentController {
             if (!result) {
                 return res.status(404).json({ message: `Пользователя с id ${req.user.id} не существует` })
             }
-            res.status(201).json(result);
+            res.status(201).json(_.pick(result, "text", "userId"));
         } catch (error) {
             console.log(error.message)
             res.status(500).json({ message: "Something went wrong" })
@@ -26,12 +26,12 @@ class CommentController {
     }
 
     async getAllComments(req, res) {
-        res.status(200).json(await this.#commentService.getAllCommennts());
+        res.status(200).json(await this.#commentService.getAllComments());
     }
 
     async deleteComment(req, res) {
         await this.#commentService.destroyComment(req.params.id)
-        res.status(204).json({})
+        res.status(204).end()
     }
 }
 
