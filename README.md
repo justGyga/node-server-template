@@ -12,10 +12,10 @@ This project should show my knowledge in project structuring.
 - auto-bind
 
 # TODO
-- [x] Create new entity Mark
+- [ ] Create new entity Mark
 - [ ] Router for Mark (put request) - create
 - [ ] Router for Mark (get request) - list of likers
-- [ ] Create .env (dotenv)
+- [x] Create .env
 
 # Checked tasks
 ## task 1
