@@ -6,8 +6,7 @@ class CommentService{
         if (!await User.findByPk(doc.id)) { 
             return false
         }
-        return await Comment.create({text: doc.text, userId: doc.id}) // return with id (entity)
-        return {text: doc.text}
+        return await Comment.create({text: doc.text, userId: doc.id})
     }
 
     async getAllComments(){

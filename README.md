@@ -14,7 +14,7 @@ This project should show my knowledge in project structuring.
 # TODO
 - [x] Create new entity Mark
 - [x] Create Mark add DTO
-- [ ] Router for Mark (put request) - create
+- [x] Router for Mark (put request) - create
 - [ ] Router for Mark (get request) - list of likers
 - [x] Create .env
 

@@ -1,5 +1,3 @@
-import User from "../models/user.js";
-import Comment from "../models/comments.js";
 import autoBind from "auto-bind";
 import _ from 'lodash';
 import CommentService from "./service.js";
