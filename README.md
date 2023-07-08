@@ -15,7 +15,8 @@ This project should show my knowledge in project structuring.
 - [x] Create new entity Mark
 - [x] Create Mark add DTO
 - [x] Router for Mark (put request) - create
-- [ ] Router for Mark (get request) - list of likers
+- [x] Router for Mark (get request) - list of likers
+- [x] Change Mark function in Put req
 - [x] Create .env
 
 # Checked tasks
@@ -59,8 +60,10 @@ This project should show my knowledge in project structuring.
 - [x] Create new entity Mark
 - [x] Create Mark add DTO
 - [x] Router for Mark (put request) - create
-- [ ] Router for Mark (get request) - list of likers
+- [x] Router for Mark (get request) - list of likers
+- [x] Change Mark function in Put req
 - [x] Create .env
+
 
 ### Download dependencies
 Use ```npm i``` to install all packages
