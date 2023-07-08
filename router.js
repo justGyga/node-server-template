@@ -36,7 +36,7 @@ router.get('/comments', TokenGuard.verify, CommentController.getAllComments)
 router.delete('/comments/:id', validate(deleteDto, CONTEXT.PATH), CommentController.deleteComment)
 
 // Marks
-router.put('/comments/:commentId', TokenGuard.verify, validate(idMarkDto, CONTEXT.PATH), validate(putMarkDto), MarkController.postMark)
-router.get('/comments/:commentId', validate(idMarkDto, CONTEXT.PATH), MarkController.gelAllMarks)
+router.put('/marks/:commentId', TokenGuard.verify, validate(idMarkDto, CONTEXT.PATH), validate(putMarkDto), MarkController.postMark)
+router.get('/marks/:commentId', validate(idMarkDto, CONTEXT.PATH), MarkController.gelAllMarks)
 
 export default router;

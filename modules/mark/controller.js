@@ -26,7 +26,16 @@ class MarkController {
         }
     }
 
-    async gelAllMarks(req,res){}
+    async gelAllMarks(req, res) {
+        try {
+
+            const result = await this.#markService.getMarks(req.params)
+            res.status(200).json(_.pick(result, "text", "userId", "createdAt", "Marks"))
+        } catch (error) {
+            console.log(error.message)
+            res.status(500).json({ message: "Something went wrong" })
+        }
+    }
 }
 
 export default new MarkController();
