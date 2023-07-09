@@ -56,7 +56,7 @@ This project should show my knowledge in project structuring.
 - [x] Separate userController and userService from userController
 - [x] Separate commentController and commentService from commentController
 
-## task 6 (current)
+## task 6 
 - [x] Create new entity Mark
 - [x] Create Mark add DTO
 - [x] Router for Mark (put request) - create
@@ -64,6 +64,12 @@ This project should show my knowledge in project structuring.
 - [x] Change Mark function in Put req
 - [x] Create .env
 
+## task 7 (current)
+- [] Create new router with name Marks 
+- [] Resolve comments
+- [] 
+- [] 
+- [] 
 
 ### Download dependencies
 Use ```npm i``` to install all packages

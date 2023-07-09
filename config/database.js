@@ -7,7 +7,7 @@ const createConnection = (dbname, user, pass) => {
         port: 5432,
         logging: false,
         sync: { alter: true }
-    })
-}
+    });
+};
 
-export default createConnection
+export default createConnection;
