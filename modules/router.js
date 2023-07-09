@@ -3,23 +3,23 @@ import Router from "express";
 import { validate, CONTEXT } from "./middleware/validator.js";
 import { TokenGuard } from "./middleware/token-guard.js";
 // Controllers
-import UserController from "./modules/user/controller.js";
-import CommentController from "./modules/comment/controller.js";
-import MarkController from "./modules/mark/controller.js";
+import UserController from "./user/controller.js";
+import CommentController from "./comment/controller.js";
+import MarkController from "./mark/controller.js";
 // User DTO
-import { registerDto } from "./modules/user/dto/registration-dto.js";
-import { loginDto } from "./modules/user/dto/login-dto.js";
+import { registerDto } from "./user/dto/registration-dto.js";
+import { loginDto } from "./user/dto/login-dto.js";
 // Comment DTO
-import { deleteDto } from "./modules/comment/dto/delete-dto.js";
-import { addDto } from "./modules/comment/dto/add-dto.js";
+import { deleteDto } from "./comment/dto/delete-dto.js";
+import { addDto } from "./comment/dto/add-dto.js";
 // Mark DTO
-import { putMarkDto } from "./modules/mark/dto/put-dto.js";
-import { idMarkDto } from "./modules/mark/dto/id-dto.js";
+import { putMarkDto } from "./mark/dto/put-dto.js";
+import { idMarkDto } from "./mark/dto/id-dto.js";
 
 const router = new Router();
 const marks = new Router();
 
-router.use("/marks", marks)
+router.use("/marks", marks);
 
 router.get("/helloworld", async function (req, res) {
     try {
@@ -40,6 +40,6 @@ router.delete("/comments/:id", validate(deleteDto, CONTEXT.PATH), CommentControl
 
 // Marks
 marks.put("/:commentId", TokenGuard.verify, validate(idMarkDto, CONTEXT.PATH), validate(putMarkDto), MarkController.postMark);
-marks.get("/:commentId", validate(idMarkDto, CONTEXT.PATH), MarkController.gelAllMarks);
+marks.get("/:commentId", validate(idMarkDto, CONTEXT.PATH), MarkController.getAllMarks);
 
 export default router;

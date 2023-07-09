@@ -21,7 +21,7 @@ class MarkController {
         }
     }
 
-    async gelAllMarks(req, res) {
+    async getAllMarks(req, res) {
         try {
             const result = await this.#markService.getMarks(req.params.commentId);
             res.status(200).json(result);
