@@ -1,7 +1,7 @@
 {
-  "name": "homeworksleam",
+  "name": "node-server-template",
   "version": "1.0.0",
-  "description": "HomeWork Leam",
+  "description": "I create and develop this Pet-project under the guidance Leam. This project should show my knowledge in project structuring.",
   "main": "app.js",
   "type": "module",
   "scripts": {
