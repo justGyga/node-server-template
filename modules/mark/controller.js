@@ -12,12 +12,8 @@ class MarkController {
 
     async postMark(req, res) {
         try {
-            const result = await this.#markService.putMark({
-                userId: req.user.id,
-                like: req.body.like,
-                commentId: req.params.commentId
-            }); // Не формируй объект
-            if (!result) res.status(404).json({ message: `Комментария с id ${req.params.commentId} не существует` });
+            const result = await this.#markService.putMark(req.user.id, req.body.like, req.params.commentId);
+            if (!result) return res.status(404).json({ message: `Комментария с id ${req.params.commentId} не существует` });
             res.status(201).json(_.pick(result, "like", "commentId"));
         } catch (error) {
             console.log(error.message);
@@ -27,8 +23,7 @@ class MarkController {
 
     async gelAllMarks(req, res) {
         try {
-            const result = await this.#markService.getMarks(req.params);
-            // res.status(200).json(_.pick(result, "text", "userId", "createdAt", "Marks"))
+            const result = await this.#markService.getMarks(req.params.commentId);
             res.status(200).json(result);
         } catch (error) {
             console.log(error.message);

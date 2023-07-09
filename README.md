@@ -11,14 +11,6 @@ This project should show my knowledge in project structuring.
 - pg
 - auto-bind
 
-# TODO
-- [x] Create new entity Mark
-- [x] Create Mark add DTO
-- [x] Router for Mark (put request) - create
-- [x] Router for Mark (get request) - list of likers
-- [x] Change Mark function in Put req
-- [x] Create .env
-
 # Checked tasks
 ## task 1
 - [x] EndPoints
@@ -64,12 +56,9 @@ This project should show my knowledge in project structuring.
 - [x] Change Mark function in Put req
 - [x] Create .env
 
-## task 7 (current)
-- [] Create new router with name Marks 
-- [] Resolve comments
-- [] 
-- [] 
-- [] 
+## task 7 
+- [x] Create new router with name Marks 
+- [x] Resolve comments
 
 ### Download dependencies
 Use ```npm i``` to install all packages

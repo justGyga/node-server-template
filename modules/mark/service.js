@@ -4,34 +4,24 @@ import _ from "lodash";
 import User from "../models/user.js";
 
 class MarkService {
-    async putMark(doc) {
-        // take 3 vars
-        try {
-            const commentExistStatus = await Comment.findByPk(doc.commentId); // use if Comment.count({id: ...}) except findByPk
-        } catch (error) {
-            return false;
-        }
-        const markExistStatus = await Mark.findOne({ where: { userId: doc.userId, commentId: doc.commentId } });
+    async putMark(userId, mark, commentId) {
+        if (!(await Comment.findByPk(commentId))) return false;
+        const markExistStatus = await Mark.findOne({ where: { userId, commentId } });
         if (markExistStatus) {
-            markExistStatus.like = doc.like;
+            markExistStatus.like = mark;
             return await markExistStatus.save();
         }
-        return await Mark.create(_.pick(doc, "like", "commentId", "userId"));
+        return await Mark.create({ commentId, userId, like: mark });
     }
 
-    async getMarks(doc) {
-        // take id except doc
-        const comment = await Comment.findByPk(doc.commentId, {
+    async getMarks(id) {
+        const comment = await Comment.findByPk(id, {
             attributes: { exclude: ["userId", "updatedAt"] },
             include: [
                 { model: User, attributes: ["id", "login"] },
                 { model: Mark, attributes: ["id", "like"], include: { model: User, attributes: ["id", "login"] } }
             ]
         });
-        // comment.Marks = comment.Marks.map((mark) => {
-        //     mark.User = mark.User.login
-        //     return _.pick(mark, "like", "User")
-        // })
         return comment;
     }
 }

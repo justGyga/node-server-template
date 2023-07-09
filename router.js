@@ -17,6 +17,9 @@ import { putMarkDto } from "./modules/mark/dto/put-dto.js";
 import { idMarkDto } from "./modules/mark/dto/id-dto.js";
 
 const router = new Router();
+const marks = new Router();
+
+router.use("/marks", marks)
 
 router.get("/helloworld", async function (req, res) {
     try {
@@ -36,7 +39,7 @@ router.get("/comments", TokenGuard.verify, CommentController.getAllComments);
 router.delete("/comments/:id", validate(deleteDto, CONTEXT.PATH), CommentController.deleteComment);
 
 // Marks
-router.put("/marks/:commentId", TokenGuard.verify, validate(idMarkDto, CONTEXT.PATH), validate(putMarkDto), MarkController.postMark);
-router.get("/marks/:commentId", validate(idMarkDto, CONTEXT.PATH), MarkController.gelAllMarks);
+marks.put("/:commentId", TokenGuard.verify, validate(idMarkDto, CONTEXT.PATH), validate(putMarkDto), MarkController.postMark);
+marks.get("/:commentId", validate(idMarkDto, CONTEXT.PATH), MarkController.gelAllMarks);
 
 export default router;
