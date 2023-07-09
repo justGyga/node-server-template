@@ -29,7 +29,7 @@ class CommentController {
 
     async deleteComment(req, res) {
         await this.#commentService.destroyComment(req.params.id)
-        res.status(204).end()
+        res.status(204).send()
     }
 }
 
