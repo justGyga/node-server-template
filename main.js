@@ -18,7 +18,7 @@ new Server(APP_PORT, [
             sync: { alter: true }
         })
     ).registerModels([...modelList]),
-    new Routing(GLOBAL_PREFIX, [{ router: router}])
+    new Routing(GLOBAL_PREFIX, [{ router: router }])
 ])
     .initServices()
     .then((server) => server.run(() => console.log(`Server started on port: ${APP_PORT}`)));

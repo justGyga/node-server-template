@@ -15,19 +15,19 @@ export const CONTEXT = {
 
 export const validate =
     (schema, payloadKey = CONTEXT.BODY, options = {}) =>
-    async (req, res, next) => {
-        const data = req[payloadKey];
-        options = { abortEarly: false, ...options };
-        try {
-            let fieldKeys = [];
-            for (const s of [schema].flat()) {
-                fieldKeys = [...fieldKeys, ...Object.keys(s.fields)];
-                await s.validate(data, options);
+        async (req, res, next) => {
+            const data = req[payloadKey];
+            options = { abortEarly: false, ...options };
+            try {
+                let fieldKeys = [];
+                for (const s of [schema].flat()) {
+                    fieldKeys = [...fieldKeys, ...Object.keys(s.fields)];
+                    await s.validate(data, options);
+                }
+                req[payloadKey] = _.pick(data, fieldKeys);
+                next();
+            } catch (error) {
+                const errors = errorParser(error);
+                return res.status(422).json({ errors });
             }
-            req[payloadKey] = _.pick(data, fieldKeys);
-            next();
-        } catch (error) {
-            const errors = errorParser(error);
-            return res.status(422).json({ errors });
-        }
-    };
+        };

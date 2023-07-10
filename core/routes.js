@@ -1,7 +1,7 @@
 import { BaseModule } from "./server.js";
 import { Router as ExpressRouter } from "express";
 
-export default class Routing extends BaseModule{
+export default class Routing extends BaseModule {
     #mainRouter
     #globalPrefix
 

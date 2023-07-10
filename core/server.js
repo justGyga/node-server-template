@@ -4,9 +4,9 @@ import cors from "cors";
 const TIMEOUT = 1000 * 60 * 10; // 10m
 
 export class BaseModule {
-    async beforeHandler(app) {}
-    async handler(app) {}
-    async afterHandler(app) {}
+    async beforeHandler(app) { }
+    async handler(app) { }
+    async afterHandler(app) { }
 
     async _resolve(app) {
         await this.beforeHandler(app);

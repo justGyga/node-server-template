@@ -2,7 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import User from "./user.js";
 import Comment from "./comments.js";
 
-export default class Mark extends Model {}
+export default class Mark extends Model { }
 
 export const markInitter = (sequelize) => {
     Mark.init(
