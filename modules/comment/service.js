@@ -3,14 +3,11 @@ import Comment from "../models/comments.js";
 
 class CommentService {
     async postComment(doc) {
-        if (!(await User.findByPk(doc.id))) {
-            return false;
-        }
         return await Comment.create({ text: doc.text, userId: doc.id });
     }
 
     async getAllComments() {
-        return await Comment.findAll();
+        return await Comment.findAll(); // TODO: include User
     }
 
     async destroyComment(id) {

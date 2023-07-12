@@ -16,8 +16,6 @@ export class BaseModule {
 }
 
 class Server {
-    #SIZE = 5 * 1024 * 1024; // 5MB
-
     constructor(PORT, services) {
         this.port = PORT;
         this.services = services;

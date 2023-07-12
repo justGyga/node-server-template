@@ -2,11 +2,11 @@
   "name": "node-server-template",
   "version": "1.0.0",
   "description": "I create and develop this Pet-project under the guidance Leam. This project should show my knowledge in project structuring.",
-  "main": "app.js",
+  "main": "main.js",
   "type": "module",
   "scripts": {
-    "start": "node -r dotenv/config main.js",
-    "dev": "nodemon -r dotenv/config main.js"
+    "start": "node -r dotenv/config .",
+    "dev": "nodemon -r dotenv/config ."
   },
   "author": "",
   "license": "ISC",

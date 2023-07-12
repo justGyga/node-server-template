@@ -29,6 +29,8 @@ router.get("/helloworld", async function (req, res) {
     }
 });
 
+// TODO: GROUP ROUTERS
+
 // Users
 router.post("/registration", validate(registerDto), UserController.registration);
 router.post("/login", validate(loginDto), UserController.login);
@@ -36,10 +38,11 @@ router.post("/login", validate(loginDto), UserController.login);
 // Comments
 router.post("/comments", TokenGuard.verify, validate(addDto), CommentController.addComment);
 router.get("/comments", TokenGuard.verify, CommentController.getAllComments);
-router.delete("/comments/:id", validate(deleteDto, CONTEXT.PATH), CommentController.deleteComment);
+router.delete("/comments/:id", TokenGuard.verify, validate(deleteDto, CONTEXT.PATH), CommentController.deleteComment);
 
 // Marks
 marks.put("/:commentId", TokenGuard.verify, validate(idMarkDto, CONTEXT.PATH), validate(putMarkDto), MarkController.postMark);
-marks.get("/:commentId", validate(idMarkDto, CONTEXT.PATH), MarkController.getAllMarks);
+marks.get("/:commentId", TokenGuard.verify, validate(idMarkDto, CONTEXT.PATH), MarkController.getAllMarks);
 
+// TODO: EXPORT 3 ROUTERS
 export default router;
