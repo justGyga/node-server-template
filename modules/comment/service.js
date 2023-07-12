@@ -7,7 +7,10 @@ class CommentService {
     }
 
     async getAllComments() {
-        return await Comment.findAll(); // TODO: include User
+        return await Comment.findAll({
+            attributes: { exclude: ["userId", "updatedAt"] },
+            include: { model: User, attributes: ["id", "login"] }
+        }); // TODO: include User
     }
 
     async destroyComment(id) {

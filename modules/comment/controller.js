@@ -13,9 +13,6 @@ class CommentController {
     async addComment(req, res) {
         try {
             const result = await this.#commentService.postComment({ text: req.body.text, id: req.user.id });
-            if (!result) {
-                return res.status(404).json({ message: `Пользователя с id ${req.user.id} не существует` });
-            }
             res.status(201).json(_.pick(result, "text", "userId"));
         } catch (error) {
             console.log(error.message);

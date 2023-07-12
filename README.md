@@ -61,7 +61,7 @@ This project should show my knowledge in project structuring.
 - [x] Resolve comments
 
 ## task 8 (current)
-- [ ] Resolve comments
+- [x] Resolve comments
 - [ ] Swagger
 
 ### Commands
