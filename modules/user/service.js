@@ -1,7 +1,7 @@
 import User from "../models/user.js";
 import argon2 from "argon2";
 import _ from "lodash";
-import { TokenGuard } from "../../middleware/token-guard.js";
+import { TokenGuard } from "../middleware/token-guard.js";
 import { Op } from "sequelize";
 
 class UserService {

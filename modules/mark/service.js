@@ -5,7 +5,7 @@ import User from "../models/user.js";
 
 class MarkService {
     async putMark(userId, mark, commentId) {
-        if (!(await Comment.findByPk(commentId))) return false;
+        if (!await Comment.findOne({ where: { id: commentId } })) return false;
         const markExistStatus = await Mark.findOne({ where: { userId, commentId } });
         if (markExistStatus) {
             markExistStatus.like = mark;

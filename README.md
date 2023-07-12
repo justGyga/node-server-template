@@ -60,5 +60,11 @@ This project should show my knowledge in project structuring.
 - [x] Create new router with name Marks 
 - [x] Resolve comments
 
-### Download dependencies
-Use ```npm i``` to install all packages
+## task 8 (current)
+- [x] Resolve comments
+- [ ] Swagger
+
+### Commands
+- Use ```npm i``` to install all packages
+- Use ```npm start``` to start
+- Use ```npm run dev``` if you edit code
