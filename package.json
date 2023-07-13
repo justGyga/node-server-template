@@ -19,6 +19,8 @@
     "lodash": "^4.17.21",
     "pg": "^8.11.0",
     "sequelize": "^6.32.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {
