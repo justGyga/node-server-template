@@ -33,6 +33,7 @@ module.exports = {
         "no-param-reassign": "off",
         "no-underscore-dangle": "off",
         "no-template-curly-in-string": "off",
-        "func-names": "off"
+        "func-names": "off",
+        "no-empty-function": "off"
     }
 };
