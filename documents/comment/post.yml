@@ -1,0 +1,36 @@
+/comments:
+  post:
+    tags:
+      - Comment
+    security: [ ]
+    summary: Post a new comment
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [ text, id ]
+            properties:
+              text:
+                type: string
+                example: ASDFFDSA
+              id:
+                type: int
+                example: 123
+    responses:
+      "201":
+        description: Comment was posted
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: ASDFFDSA
+                id:
+                  type: int
+                  example: 123
+      "422":
+        $ref: '#definitions/validations'

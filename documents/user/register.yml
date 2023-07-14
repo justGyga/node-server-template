@@ -1,0 +1,36 @@
+/register:
+  post:
+    tags:
+      - User
+    security: [ ]
+    summary: Registration in system
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [ login, password, name, secondName]
+            properties:
+              login:
+                type: string
+                example: Gyga
+              password:
+                type: string
+                example: "12345678"
+              name:
+                type: string
+                example: John
+              secondName:
+                type: string
+                example: Doe
+
+    responses:
+      "201":
+        description: Created
+      "409":
+        $ref: '#definitions/conflict'
+      "422":
+        $ref: '#definitions/validations'
+      "500":
+        $ref: '#definitions/error'
