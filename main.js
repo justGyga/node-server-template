@@ -48,7 +48,7 @@ new Server(APP_PORT, [
             },
             security: [{ bearer: [] }]
         },
-        apis: ["./documents/api.yaml"]
+        apis: ["./documents/**/*.yml", "./documents/**/*.yaml"]
     })
 ])
     .initServices()

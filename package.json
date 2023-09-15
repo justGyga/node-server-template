@@ -1,7 +1,7 @@
 {
-  "name": "node-server-template",
+  "name": "Backend test project",
   "version": "1.0.0",
-  "description": "I create and develop this Pet-project under the guidance Leam. This project should show my knowledge in project structuring.",
+  "description": "Back-end test project",
   "main": "main.js",
   "type": "module",
   "scripts": {

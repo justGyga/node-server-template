@@ -1,0 +1,21 @@
+/comments:
+  get:
+    tags:
+      - Comment
+    security: [ ]
+    summary: Get all comments from BD
+
+    responses:
+      "200":
+        description: All comments
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                  example: ASDFFDSA
+                id:
+                  type: int
+                  example: 123

@@ -1,0 +1,20 @@
+/comments/:id:
+  delete:
+    tags:
+      - Comment
+    security: [ ]
+    summary: Delete a comment by commentId
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: id
+            properties:
+              id:
+                type: int
+                example: 123
+    responses:
+      "204":
+        description: Comment was deleted

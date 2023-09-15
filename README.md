@@ -60,9 +60,9 @@ This project should show my knowledge in project structuring.
 - [x] Create new router with name Marks 
 - [x] Resolve comments
 
-## task 8 (current)
+## task 8
 - [x] Resolve comments
-- [ ] Swagger
+- [x] Swagger
 
 ### Commands
 - Use ```npm i``` to install all packages

@@ -1,0 +1,6 @@
+  /helloworld:
+    post:
+      summary: Returns "hello world" message
+      description: This endpoint is needed to check routers
+      response:
+        '200'
