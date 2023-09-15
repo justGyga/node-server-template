@@ -62,7 +62,7 @@ This project should show my knowledge in project structuring.
 
 ## task 8 (current)
 - [x] Resolve comments
-- [ ] Swagger
+- [x] Swagger
 
 ### Commands
 - Use ```npm i``` to install all packages
